@@ -69,9 +69,9 @@ test('Verify Date Selection Updates Available Flights', async ({ page }) => {
 
     await datesButton.click();
 
-   // await page.click("span[aria-label='17 April 2025']");
+   await page.click("span[aria-label='17 April 2025']");
 
-   //await page.click('[data-ui-name="button_search_submit"]');
+   await page.click('[data-ui-name="button_search_submit"]');
  
 
   

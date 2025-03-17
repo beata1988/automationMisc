@@ -1,0 +1,129 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Login with valid credentials
+- Location: C:\Users\beatriz.romero\OneDrive - Unosquare\Documents\Playwright\automationMisc\expedia\tests\UserStory3.spec.ts:9:5
+
+# Error details
+
+```
+Error: page.click: Test timeout of 30000ms exceeded.
+Call log:
+  - waiting for locator('button[id="passwordButton"]')
+
+    at C:\Users\beatriz.romero\OneDrive - Unosquare\Documents\Playwright\automationMisc\expedia\tests\UserStory3.spec.ts:30:16
+```
+
+# Page snapshot
+
+```yaml
+- navigation:
+  - button "Volver":
+    - img "Volver"
+  - figure:
+    - img "hotels.com"
+- text: Verificando datos de inicio de sesión
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect, Page } from '@playwright/test';
+   2 |
+   3 | const validUser = "bromerodt@gmail.com";
+   4 | const validPsw = "Test9731%";
+   5 | const invalidPsw = "123654";
+   6 | const invalidUser = "btestertert@gmail.com"
+   7 |
+   8 |
+   9 | test('Login with valid credentials', async ({ page }) => {
+  10 |  
+  11 |     await page.goto('https://www.hoteles.com/');
+  12 |     //await page.click('body');
+  13 |     
+  14 |     
+  15 |     //await expect(page.getByText('Encuentra tu lugar perfecto')).toBeVisible();
+  16 |    // await page.locator('[data-stid="header-menu-button"]');
+  17 |     await page.waitForLoadState();
+  18 |     
+  19 |    
+  20 |     const test= await page.getByText('Iniciar sesión');
+  21 |     console.log(test);
+  22 |     
+  23 |     await page.waitForLoadState();
+  24 |     await page.locator(':nth-match(a:has-text("Iniciar Sesión"), 1)').click(); // finds a text inside a link
+  25 |     await page.waitForLoadState();
+  26 |     await page.fill('input[id="loginFormEmailInput"]', validUser);
+  27 |     await page.waitForLoadState();
+  28 |     await page.click('button[id="loginFormSubmitButton"]');
+  29 |    
+> 30 |     await page.click('button[id="passwordButton"]');
+     |                ^ Error: page.click: Test timeout of 30000ms exceeded.
+  31 |     await page.fill('input[id="enterPasswordFormPasswordInput"]', validPsw);
+  32 |     await page.click('button[id="enterPasswordFormSubmitButton"]');
+  33 |     await page.waitForLoadState();
+  34 |   });
+  35 |
+  36 |   test('Login with invalid credentials', async ({ page }) => {
+  37 |  
+  38 |     await page.goto('https://www.hoteles.com/');
+  39 |     //await page.click('body');
+  40 |     
+  41 |     
+  42 |     //await expect(page.getByText('Encuentra tu lugar perfecto')).toBeVisible();
+  43 |    // await page.locator('[data-stid="header-menu-button"]');
+  44 |     await page.waitForLoadState();
+  45 |     
+  46 |    
+  47 |     const test= await page.getByText('Iniciar sesión');
+  48 |     console.log(test);
+  49 |     
+  50 |     await page.waitForLoadState();
+  51 |     await page.locator(':nth-match(a:has-text("Iniciar Sesión"), 1)').click(); // finds a text inside a link
+  52 |     await page.waitForLoadState();
+  53 |     await page.fill('input[id="loginFormEmailInput"]', invalidUser);
+  54 |     await page.waitForLoadState();
+  55 |     await page.click('button[id="loginFormSubmitButton"]');
+  56 |    
+  57 |     /*await page.click('button[id="passwordButton"]');
+  58 |     await page.fill('input[id="enterPasswordFormPasswordInput"]', invalidPsw);
+  59 |     await page.click('button[id="enterPasswordFormSubmitButton"]');
+  60 |     await page.waitForLoadState();*/
+  61 |     
+  62 |   });
+  63 |
+  64 |
+  65 |   test('Login with empty credentials', async ({ page }) => {
+  66 |  
+  67 |     await page.goto('https://www.hoteles.com/');
+  68 |     //await page.click('body');
+  69 |     
+  70 |     
+  71 |     //await expect(page.getByText('Encuentra tu lugar perfecto')).toBeVisible();
+  72 |    // await page.locator('[data-stid="header-menu-button"]');
+  73 |     await page.waitForLoadState();
+  74 |     
+  75 |    
+  76 |     const test= await page.getByText('Iniciar sesión');
+  77 |     console.log(test);
+  78 |     
+  79 |     await page.waitForLoadState();
+  80 |     await page.locator(':nth-match(a:has-text("Iniciar Sesión"), 1)').click(); // finds a text inside a link
+  81 |     await page.waitForLoadState();
+  82 |     await page.fill('input[id="loginFormEmailInput"]', "");
+  83 |     await page.waitForLoadState();
+  84 |     await page.click('button[id="loginFormSubmitButton"]');
+  85 |    
+  86 |     /*await page.click('button[id="passwordButton"]');
+  87 |     await page.fill('input[id="enterPasswordFormPasswordInput"]', invalidPsw);
+  88 |     await page.click('button[id="enterPasswordFormSubmitButton"]');
+  89 |     await page.waitForLoadState();*/
+  90 |     
+  91 |   });
+  92 |
+```

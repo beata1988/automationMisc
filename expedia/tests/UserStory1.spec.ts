@@ -14,10 +14,7 @@ test('Search Hotels by Valid City Name', async ({ page }) => {
     await page.click('[aria-label="Times Square Nueva York, Nueva York, Estados Unidos"]');
     await page.click('[id="search_button"]');
     await page.getByRole('link', { name: 'Abre la página de Home2'}).isVisible();
-    /*await page.fill('input[name="destination"]', 'Cancun');
-    
-    await expect(page.locator('.search-summary')).toContainText('Cancun');
-    await expect(page.locator('.hotel-list')).toBeVisible();*/
+   
   });
 
   test('Select Check-in and Check-out Dates', async ({ page }) => {

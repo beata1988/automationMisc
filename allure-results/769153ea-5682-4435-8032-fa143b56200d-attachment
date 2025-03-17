@@ -1,0 +1,110 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Verify Date Selection Updates Available Flights
+- Location: C:\Users\beatriz.romero\OneDrive - Unosquare\Documents\Playwright\automationMisc\expedia\tests\UserStory2.spec.ts:47:5
+
+# Error details
+
+```
+Error: locator.waitFor: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('input[placeholder=\'Airport or city\']') to be visible
+
+    at C:\Users\beatriz.romero\OneDrive - Unosquare\Documents\Playwright\automationMisc\expedia\tests\UserStory2.spec.ts:59:22
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect, Page } from '@playwright/test';
+   2 | import { Locator } from 'nightwatch/lib/element';
+   3 |
+   4 | const departure = "madrid";
+   5 | const destination = "new york";
+   6 |
+   7 | const minPrice = "380000";
+   8 | const maxPrice = "800000"
+   9 |  
+  10 |
+  11 | test('Verify Round Trip Selection Enables Return Date Field', async ({ page }) => {
+  12 |  //Selecting the “Round Trip” option should enable the return date field.
+  13 |     await page.goto('https://www.booking.com/');
+  14 |     await page.click('body');
+  15 |     await page.locator('#flights').click();
+  16 |     await page.locator('fieldset').click();
+  17 |
+  18 |     
+  19 |     
+  20 |    
+  21 |   });
+  22 |
+  23 | test('Validate Departure and Destination City Inputs Fetch Flights', async ({ page }) => {
+  24 |   await page.goto('https://www.booking.com/');
+  25 |   const departurec = page.locator("input[placeholder='Airport or city']");
+  26 |   const destinationc = page.locator("input[placeholder='Airport or city']");
+  27 |   const  airport1 = page.locator("//li[2]//span[3]//span[1]");
+  28 |     await page.click('body');
+  29 |     await page.locator('#flights').click();
+  30 |
+  31 |     await page.click('[data-ui-name="input_location_from_segment_0"]');
+  32 |     await departurec.press('Backspace');
+  33 |     await departurec.fill(departure);
+  34 |     await page.getByText('MAD Adolfo Suarez Madrid-').click();
+  35 |     
+  36 |
+  37 |    await page.click('[data-ui-name="input_location_to_segment_0"]');
+  38 |    await departurec.fill(destination);
+  39 |     await page.getByText('LAG').click();
+  40 |    await page.click('[data-ui-name="button_search_submit"]');
+  41 |  
+  42 |
+  43 |  
+  44 |
+  45 | });
+  46 |
+  47 | test('Verify Date Selection Updates Available Flights', async ({ page }) => {
+  48 |   //Test Case 3: Verify Date Selection Updates Available Flights
+  49 |   await page.goto('https://www.booking.com/');
+  50 |   const departurec = page.locator("input[placeholder='Airport or city']");
+  51 |   const destinationc = page.locator("input[placeholder='Airport or city']");
+  52 |   const  airport1 = page.locator("//li[2]//span[3]//span[1]");
+  53 |   const datesButton = page.locator('[data-ui-name="button_date_segment_0"]');
+  54 |     await page.click('body');
+  55 |     await page.locator('#flights').click();
+  56 |
+  57 |     await page.click('[data-ui-name="input_location_from_segment_0"]');
+  58 |
+> 59 |     await departurec.waitFor();
+     |                      ^ Error: locator.waitFor: Target page, context or browser has been closed
+  60 |     await departurec.press('Backspace');
+  61 |     await departurec.fill(departure);
+  62 |     await page.getByText('MAD Adolfo Suarez Madrid-').click();
+  63 |     
+  64 |
+  65 |    await page.click('[data-ui-name="input_location_to_segment_0"]');
+  66 |    await departurec.fill(destination);
+  67 |
+  68 |     await page.getByText('LAG').click();
+  69 |
+  70 |     await datesButton.click();
+  71 |
+  72 |    // await page.click("span[aria-label='17 April 2025']");
+  73 |
+  74 |    //await page.click('[data-ui-name="button_search_submit"]');
+  75 |  
+  76 |
+  77 |   
+  78 | });
+  79 |
+  80 |
+  81 |
+  82 |
+  83 |
+  84 |   
+```
