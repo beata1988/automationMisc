@@ -1,5 +1,5 @@
 # automationMisc
-AutomationMisc is a project intended to inorporate an automation framework with playwright and TS.
+AutomationMisc is a project intended to incorporate an automation framework with playwright and TS.
 Expedia pages stop working after several iterations so I used other real pages such as hotels.com and booking.com to simulate the same user stories
 However, after running tests so many times, the pages become unresponsive as a result of automation detection in the browsers.
 Playwright and TS were the preferred technologies for this as Playwright provides a robust and easier way to interact with web pages
