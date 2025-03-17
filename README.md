@@ -12,3 +12,7 @@ A playwright report can be found in the folder "playwright-report" by copying th
 
 The playwright test cases are located in the folder expedia-->tests
 Every User story's test case is documented in the md files
+
+Videos of some excecutions
+https://www.loom.com/share/5f1f426d4bcc4454ac98e14916514db1
+https://www.loom.com/share/0c46104d97714e2d8da1057c28fa257e?sid=4d6cb3ea-16de-4080-a652-c846d75b6f84
